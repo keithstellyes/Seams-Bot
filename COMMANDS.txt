@@ -10,6 +10,9 @@ Does various list operations like mean, median and mode; the argument is , delim
 math formula
 It scrubs for any alphabetic characters, replaces ^ with ** and then uses Python's eval() function.
 
+msg sms/sms-p recipient(if-p, uses alias from profiles.json) message
+Sends a message via the protocol, the -p flag on sms means to use the profiles.json to pull up the contact info
+
 mtg cardname
 Searches a JSON file for the specific card's name then prints data on it. Still in its early stages
 
