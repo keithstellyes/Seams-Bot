@@ -1,6 +1,9 @@
 from commandlookup import processEval
 
 inputStr = ""
-while not (inputStr.lower().startswith("quit") or inputStr.lower().startswith("exit")):    
+while True:
     inputStr = input("Input:")
-    print(processEval(inputStr))
+    if not(inputStr.lower().startswith("quit") or inputStr.lower().startswith("exit")):
+        print(processEval(inputStr))
+    else:
+        break
