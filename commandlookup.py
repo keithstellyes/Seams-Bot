@@ -7,10 +7,12 @@ from functions.kmathtools import listOps
 from functions.kmathtools import math
 from functions.etcetra import pythonEvaluator
 from functions.mygooglemaps import getGMapsDirections
+from functions.directMessenger import directMessage
 
 ___name___ = "commandlookup"
 
 def splitArgString(argstr,argcount,delimiter = " "):
+    
     if len(argstr.split(" ")) > argcount:
         firstString = ""
         secondString = ""
@@ -24,7 +26,7 @@ def splitArgString(argstr,argcount,delimiter = " "):
 
         args = firstString.split(delimiter)
         args.append(argstr[len(firstString)+1:])
-
+            
         return args
     else:
         return argstr.split(" ")
@@ -51,7 +53,7 @@ def processEval(argstr,recipient = ""):
 
     args = splitArgString(argstr,int(j[identifier]['args']))
     args[0] = args[0].lower()
-
+    
     if j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"]):
         return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:])")
     
