@@ -1,0 +1,80 @@
+Creating a new command that can be used by the SMS and terminal interfaces is dead easy...
+
+#1. Create a function that takes a list (no matter how many arguments are used)
+	Example:
+	#a function that reverses a string given
+	#syntax : reverse <string to reverse>
+
+	def reverseText(args):
+		return args[0][::-1]
+#2. Add __name__ = "..." references
+	Example:
+	#reverser.py
+	__name__ = "reverser"
+	def reverseText(args):
+		__name__ = "reverseText"
+		return args[0][::-1]
+#3. Save in /functions/:
+Save the newly written function into the functions folder of the Seamsbot program
+
+#4. Import it in commandlookup.py
+In the directory of the installation there should be a commandlookup.py, at the top use the following code...
+
+from functions.<the top level __name__> import <the bottom level __name__>
+
+In our example, we would write
+	from functions.reverse import reverseText
+
+NOTE
+	You can have multiple functions in the same .py file all imported, just do import <bottom level __name__> for each function
+
+#5. Update commands.json:
+Open the commands.json in your text editor of choice, I prefer Notepad++
+	Tip: keep every command on its own separate line
+
+For example, by default there's the following line:
+
+	"imdb":{"function":"getIMDB","args":"1","arghelps":["Movie Title"],"permissions":"all"},
+		"imdb":{
+			This is the "identity" of the command, when the user inputs a string, the first string before the first space is this, 
+			NO SPACES IN THE IDENTITY; IT IS NOT CASE-SENSITIVE
+			In this example, let's call the identity "reverse"
+
+		"function":"getIMDB"
+			This is the actual name of the function. In our previous example, the function proper was called 
+			"reverseText(), so we would write 
+			"function":"reverseText"
+
+		"args":"1"
+			This refers to the number of significant arguments the function has after the identity
+			In the "IMDb" command, there is one significant argument after "imdb", that is
+			the Movie Title (the syntax is imdb movie title, for example, IMDb Blade Runner returns
+			various information about the film Blade Runner). This also tells the command processor
+			to how many arguments to split it, since it's 1 for our example, it'll just take everything
+			after "reverse" into the argument, this allows for any amount of spaces in the final argument
+		
+		"arghelps":["Movie Title"]
+			This is a list of explanations corresponding to each argument, for the Wikipedia command it looks like...
+				["Random/Article","Article title"] as it has two signficant arguments, and each one of these
+				explains to the end user what each argument does
+		"permissions":"all"
+			This refers to the permission groups that may execute a command, this is one variable that can be expected
+			to be changed by an end user. The command processor looks at the corresponding text file (provided it isn't
+			"permissions":"all") to determine whether the command is actually executed. The default example is the "admin" 
+			permissions group that looks to see if the sender is on the list in the admin.txt file in /settings/permissions/ folder.
+		},
+			Every command item must end in the final }, the only command that doesn't end with a , is the very last command.
+NOTES
+The final argument is not space delimited, this is how the wikipedia <article/random> <article title> can allow for several spaces
+in the final item in the args list
+
+For example, since its args listing is equal to 2...
+
+INPUT: "wikipedia article Blade Runner" sends to the getWikipedia() method the following list:
+	["article","Blade Runner"]
+The listOps() function in kmathtools.py while it only takes 1 arg, its arg is further delimited by , which is done within its module, for example...
+	INPUT: "list 5,6,7" sends ["5,6,7"] into the method, which then uses .split(",") to further split that
+Similarly, the getGMapsDirections() function in mygooglemaps.py uses 2 args, and then further splits the last arg using :: as a delimiter in the last argument
+				
+		
+			
