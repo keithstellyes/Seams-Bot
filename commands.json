@@ -5,5 +5,6 @@
 "math":{"function":"math","args":"1","arghelps":["function to evaluate"],"permissions":"all"},
 "list":{"function":"listOps","args":"1","arghelps":["List numbers to operate"],"permissions":"all"},
 "python":{"function":"pythonEvaluator","args":"2","arghelps":["return/no return","function to exec"],"permissions":"admin"},
-"gmaps":{"function":"getGMapsDirections","args":"2","arghelps":["driving/transit/walking/bicycling","origin::destination"],"permissions":"all"}
+"gmaps":{"function":"getGMapsDirections","args":"2","arghelps":["driving/transit/walking/bicycling","origin::destination"],"permissions":"all"},
+"msg":{"function":"directMessage","args":"3","arghelps":["sms/email/etc","recipient","message"],"permissions":"all"}
 }
