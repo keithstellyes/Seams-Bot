@@ -8,6 +8,7 @@ from functions.kmathtools import math
 from functions.etcetra import pythonEvaluator
 from functions.mygooglemaps import getGMapsDirections
 from functions.directMessenger import directMessage
+from functions.rockpapescis import rpsGame
 
 ___name___ = "commandlookup"
 
@@ -53,8 +54,15 @@ def processEval(argstr,recipient = ""):
 
     args = splitArgString(argstr,int(j[identifier]['args']))
     args[0] = args[0].lower()
-    
-    if j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"]):
-        return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:])")
-    
-    return "You are not authorized to use this command"
+
+    if j[args[0]].get("passrecipient") == None or j[args[0]]["passrecipient"]=="False":
+        if j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"]):
+            return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:])")
+        return "You are not authorized to use this command"
+
+    #the command wants the recipient
+    else:
+        if not(j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"])):
+            return "You are not authorized to use this command"
+        else:
+            return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:]+[recipient])")

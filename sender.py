@@ -16,6 +16,8 @@ serverNumber = returnSetting("servercontact")
 
 def sendMessage(message,mode = "print",recipientOfSendMessage = "default"):
     ___name___ = "sendMessage"
+    if recipientOfSendMessage == "default":
+        print("Warning: sendMessage recipient left on default")
     if mode == "print":
         print(message)
     elif mode == "sms" and recipientOfSendMessage != "default":
