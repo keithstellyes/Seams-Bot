@@ -2,4 +2,3 @@
 *The mtg command is still very incomplete and is very much prototypical
 *Error handling in general needs improvement
 *Security features are lacking
-*The distinguishment between texts sent by the software and those received while it works, uses an extremely janky technique to do so that only works if the Twilio is a trial version
