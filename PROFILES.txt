@@ -1,0 +1,38 @@
+AS OF FEBRUARY 28 SEAMSBOT NOW SUPPORTS PROFILES
+
+Profile information is stored as a JSON, with unique names to identify each profile.
+Each profile can be used as aliases and to connect data across different phone numbers and other communication
+mediums. Also, each command can read and write data to a unique string, accessed by an ID
+
+For the budding command maker, it is useful to know the functions available
+
+getProfile(name,key)
+It gets the specific value to the key of the name. To get the profile, "Jim"'s real name, we can use
+	getProfile("Jim","realname") to return the value assigned to "realname"
+
+findProfileNameByKeyValue(key,value)
+It returns the first profile name with a corresponding key and value. To see who ever's realname
+is "Rusty Shackleford", one can use findProfileNameByKeyValue("realname","Rusty Shackleford")
+
+findAllProfileNameByKeyValue(key,value)
+Works exactly the same as above, but returns /all/ profile names that fall under the criteria.
+
+//DATAZONE// DATA FUNCTIONS
+
+profileGetData(ID,name="",phonenumber="",email="")
+It gets data by first looking at the profile name, if not given then looks at phonenumber and finally email
+Keeps code simple.
+
+	The ID refers to the specific string identifying a value. It returns None if the ID isn't there
+	name="" refers to the name of the individual profile objects, this is the best practice thing to refer to
+	phonenumber="" a second-priority when a name isn't available or it isn't useful to keep track of names
+		in a command.
+	email="" while e-mail is not yet implemented, it will work like phone numbers.
+
+~~SEE NOTE BELOW BEFORE USING THIS FUNCTION~~
+profileWriteData(ID,name="",phonenumber="",email="",newData = "")
+Works very similarly as profileGetData(), except that the data string corresponding ID is
+overwritten with the newData object
+
+~~NOTE~~
+This does not currently support the writing of the sequence }, or the ' character
