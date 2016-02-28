@@ -6,6 +6,7 @@ from twilio.rest import TwilioRestClient
 import statistics
 from commandlookup import processEval
 from xmlsetter import returnSetting
+from sender import sendMessage
 
 ___name___ = "seamsbot"
 
@@ -22,14 +23,8 @@ serverNumber = returnSetting("servercontact")
 
 recipient = ""
 
-def send(string):
-    print(string)
-    print("Sent to:"+str(recipient))
-    message = client.messages.create(to=str(recipient),
-                                     from_=serverNumber,
-                                     body=string)
 def process(argstr):
-    send(processEval(argstr,recipient))
+    sendMessage(processEval(argstr,recipient),mode="sms",recipientOfSendMessage=recipient)
 
 def poll(pollDelay):
     messagesLast = []

@@ -1,5 +1,13 @@
 #commandlookup.py ; seamsbot.py
 
+##def send(string):
+##    ___name___ = "send"
+##    print(string)
+##    print("Sent to:"+str(recipient))
+##    message = client.messages.create(to=str(recipient),
+##                                     from_=serverNumber,
+##                                     body=string)
+
 ##    #####needs improvement#####    
 ##    def extractMessage(ms):
 ##        #Checks if this message was sent by us, if so return empty string very janky way of figuring it out

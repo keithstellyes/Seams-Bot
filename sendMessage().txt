@@ -1,0 +1,22 @@
+While by default all commands return a value and that value is automatically sent to the recipient or to the
+console if in the terminal interface, sometimes a message may want to send a message to a specific recipient, to do so...
+
+This may also be used for special IO interfaces that may keep track of profiles
+
+from sender import sendMessage
+
+You'll be using the above code to import the method
+
+sendMessage(message, ...)
+	The message to send
+sendMessage(,...mode="..."...
+	The mode to send the message. 	
+	As of writing, the only modes are
+	"print" and "sms"
+sendMessage(,...recipientOfSendMessage = "...")
+	The recipient of the message. If this is not set,
+	an exception is raised.
+
+"How to phone home" via SMS
+
+sendMessage("Hi",mode="sms","+15551234567")
