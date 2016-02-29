@@ -65,8 +65,14 @@ while True:
         poll(5)
     except Exception as e:
         print("Sent to:"+str(recipient))
+        #phonehome
         message = client.messages.create(to=returnSetting("admincontact"),
                                           from_=serverNumber,
                                      body="ERROR:"+str(e))
+        #contact recipient who caused the error
+        if recipient!= returnSetting("admincontact"):
+            message = client.messages.create(to=recipient,
+                                              from_=serverNumber,
+                                         body="ERROR:"+str(e))
         time.sleep(120)
 
