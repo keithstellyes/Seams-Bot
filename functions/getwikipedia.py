@@ -12,7 +12,7 @@ def getWikipedia(args):
             return wikipedia.summary(args[1],sentences=2)
         
     except wikipedia.exceptions.DisambiguationError as e:
-        return e
+        return str(e)
         
     if args[0].lower() == "random":
         desiredArticleSummary = ""
