@@ -106,5 +106,3 @@ def profileWriteData(ID,name = "",phonenumber="",email="",newData = ""):
     outfile = open("output.json","w")
     outfile.write(processIt(str(j)))
     outfile.close()
-    
-print(profileWriteData(ID="a",name="Keith",newData = "},"))
