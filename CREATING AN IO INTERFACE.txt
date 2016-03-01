@@ -11,4 +11,10 @@ Put the input string into processEval, and it'll do all the processing, and retu
 
 output(processEval(myInput))
 
-You're done!
+You're done! 
+
+If you wanna split how different elements in the string are separated, use
+
+processEval(inputStr,breakstring=myBreakString)
+
+The terminal will have elements separated by new lines, while SMS uses |
