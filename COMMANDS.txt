@@ -19,10 +19,9 @@ Searches a JSON file for the specific card's name then prints data on it. Still 
 python return/none function
 Executes a line of Python code, if its return it uses eval(), otherwise exec(), by default it is limited to the admin permissions group
 
-rps gamename/new move/person to send to
-If rps new contact: challenges the contact to a game of rock/paper/scissors. Now the 
-	challenger must make a follow-up text to make their actual move.
-If rps gamename move: makes a move in that game
+rps new/gamename recipient/move
+rps new recipient challenges that person to a game of rock/paper/scissors; to make a move the user writes
+	rps gamename rock alternatively saying paper or scissors
 
 wikipedia article/random title
 Pulls up the first few sentences of a Wikipedia article, if the parameter is set to random, it searches for random Wikipedia articles until it gets one of sufficent length

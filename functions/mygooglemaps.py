@@ -33,9 +33,3 @@ def getGMapsDirections(args):
     routeArgs = args[1].split("::")
     return directions(routeArgs[0],routeArgs[1],args[0])
     
-
-    """
-print(directions("12015 150th St Ct E, Puyallup, WA 98374",
-           "City of Puyallup, 333 South Meridian, Puyallup, WA 98371",
-           "driving"))
-"""

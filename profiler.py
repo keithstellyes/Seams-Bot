@@ -20,9 +20,9 @@ def getProfileParse(string):
     string = string[1:-1]
     args = string.split("::")
     j = getJSON()
-    
+    if "::" not in string:
+        return string
     return j[args[1]][args[2]]
-
 def getProfile(name,key):
     __name__ = "getProfile"
     j = getJSON()
