@@ -1,2 +1,0 @@
-*Error handling in general needs improvement
-*Security features are lacking
