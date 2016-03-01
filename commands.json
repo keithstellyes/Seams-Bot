@@ -1,7 +1,7 @@
 {
 "imdb":{"function":"getIMDB","args":"1","arghelps":["Movie Title"],"permissions":"all"},
 "wikipedia":{"function":"getWikipedia","args":"2","arghelps":["Random/Article","Article title"],"permissions":"all"},
-"mtg":{"function":"getMTGCard","args":"1","arghelps":["MTG Card Title"],"permissions":"all"},
+"mtg":{"function":"getMTGCard","args":"1","arghelps":["MTG Card Title"],"permissions":"all","breakstring":"True"},
 "math":{"function":"math","args":"1","arghelps":["function to evaluate"],"permissions":"all"},
 "list":{"function":"listOps","args":"1","arghelps":["List numbers to operate"],"permissions":"all"},
 "python":{"function":"pythonEvaluator","args":"2","arghelps":["return/no return","function to exec"],"permissions":"admin"},

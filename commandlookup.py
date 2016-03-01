@@ -1,14 +1,14 @@
 import json
-from functions import *
-from functions.getwikipedia import getWikipedia
-from functions.imdb import getIMDB
-from functions.mtglookup import getMTGCard
-from functions.kmathtools import listOps
-from functions.kmathtools import math
-from functions.etcetra import pythonEvaluator
-from functions.mygooglemaps import getGMapsDirections
-from functions.directMessenger import directMessage
-from functions.rockpapescis import rpsGame
+#from commands import *
+from commands.getwikipedia import getWikipedia
+from commands.imdb import getIMDB
+from commands.mtglookup import getMTGCard
+from commands.kmathtools import listOps
+from commands.kmathtools import math
+from commands.etcetra import pythonEvaluator
+from commands.mygooglemaps import getGMapsDirections
+from commands.directMessenger import directMessage
+from commands.rockpapescis import rpsGame
 
 ___name___ = "commandlookup"
 
@@ -38,7 +38,7 @@ def getCommand(name):
     j = json.load(file)
     print(j[name])
 
-def processEval(argstr,recipient = ""):
+def processEval(argstr,recipient = "",breakstring = "|"):
     ___name___ = "processEval"
     def getValidRecipients(permissionGroup):
         file = open("settings/permissions/"+permissionGroup+".txt","r")
@@ -55,14 +55,25 @@ def processEval(argstr,recipient = ""):
     args = splitArgString(argstr,int(j[identifier]['args']))
     args[0] = args[0].lower()
 
-    if j[args[0]].get("passrecipient") == None or j[args[0]]["passrecipient"]=="False":
-        if j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"]):
-            return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:])")
-        return "You are not authorized to use this command"
+    funcString = j[args[0]]["function"]
+    funcSplitArgString = "(splitArgString(argstr,"+j[args[0]]["args"]+")[1:]"
+    recipientSetString = ""
+    breakSetString = ""
+    #check if command wants the recipient variable
+
+    if not(j[args[0]].get("passrecipient") == None or j[args[0]]["passrecipient"]=="False"):
+        recipientSetString = ", recipient='"+recipient+"'"
+
+    if not(j[args[0]].get("breakstring") == None or j[args[0]]["breakstring"]=="False"):
+        breakSetString = ", breakString=breakstring"
+    
+    if j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"]):
+        return eval(funcString+funcSplitArgString+recipientSetString+breakSetString+")")
+    return "You are not authorized to use this command"
 
     #the command wants the recipient
-    else:
-        if not(j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"])):
-            return "You are not authorized to use this command"
-        else:
-            return eval(j[args[0]]["function"]+"(splitArgString(argstr,"+j[args[0]]["args"]+")[1:]+[recipient])")
+##    else:
+##        if not(j[args[0]]["permissions"] == "all" or recipient == "" or recipient in getValidRecipients(j[args[0]]["permissions"])):
+##            return "You are not authorized to use this command"
+##        else:
+##            return eval(funcString+funcSplitArgString+"+[recipient])")
