@@ -1,4 +1,2 @@
-*Using wikipedia article with a parameter that takes the user to a disambiguation page causes a crash in the SMS client and doesn't send the disambiguation string
-*The mtg command is still very incomplete and is very much prototypical
 *Error handling in general needs improvement
 *Security features are lacking
