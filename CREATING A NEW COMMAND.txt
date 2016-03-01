@@ -76,5 +76,25 @@ The listOps() function in kmathtools.py while it only takes 1 arg, its arg is fu
 	INPUT: "list 5,6,7" sends ["5,6,7"] into the method, which then uses .split(",") to further split that
 Similarly, the getGMapsDirections() function in mygooglemaps.py uses 2 args, and then further splits the last arg using :: as a delimiter in the last argument
 				
-		
+FEATURES
+
+	//get the recipient//
+To get the sender of a command, put in the commands.json for your command:
+	 "passrecipient":"True"	
+	//formatting options//
+
+To allow the end IO interface to edit how to format the output, put into the commands.json:
+	"breakstring":"True"
+For example, the mtg command supports breakstrings, the terminal interface sets a breakstring as \n
+and the SMS interface uses | to separate lines compare...
+	Cobblebrute|{3}{R}|Creature - Elemental|Text: Vanilla|P/T:5/2|
+
+with...
+	Cobblebrute
+	{3}{R}
+	Creature - Elemental
+	Text: Vanilla
+	P/T:5/2
+
+	
 			
